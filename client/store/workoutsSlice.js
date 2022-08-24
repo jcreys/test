@@ -5,12 +5,16 @@ import history from '../history'
  */
 const FETCH_WORKOUTS = 'FETCH_WORKOUTS'
 const CREATE_WORKOUT = 'CREATE_WORKOUT'
-
+const DELETE_WORKOUT = 'DELETE_WORKOUT'
 const workouts = (state = [], action)=>{
   if(action.type === FETCH_WORKOUTS){
     return action.workouts
-  } else if(action.type === CREATE_WORKOUT){
+  }
+  if(action.type === CREATE_WORKOUT){
     return [...state, action.workout]
+  }
+  if(action.type === DELETE_WORKOUT){
+    return state.filter(workout => workout.id != action.workout.id)
   }
   return state
 }
@@ -22,6 +26,16 @@ export const createWorkout = (txt)=> {
       }
     })
     dispatch({ type: CREATE_WORKOUT, workout: response.data})
+  }
+}
+export const deleteWorkout = (workout)=> {
+  return async(dispatch)=>{
+    await axios.delete(`/api/workouts/${workout.id}`, {
+      headers: {
+        authorization: window.localStorage.getItem('token')
+      }
+    })
+    dispatch({ type: DELETE_WORKOUT, workout})
   }
 }
 export const fetchWorkouts = () => {

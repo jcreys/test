@@ -20,3 +20,18 @@ router.post('/', async (req, res, next) => {
     next(err)
   }
 })
+router.delete('/:id', async (req, res, next) => {
+  try {
+    const user = await User.findByToken(req.headers.authorization);
+    const workout = await Workout.findOne({
+        where: {
+            id: req.params.id,
+            userId: user.id
+        }
+    })
+    await workout.destroy()
+    res.sendStatus(204)
+  } catch (err) {
+    next(err)
+  }
+})

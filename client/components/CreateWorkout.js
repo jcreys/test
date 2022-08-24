@@ -6,25 +6,34 @@ class CreateWorkout extends Component {
     constructor() {
         super();
         this.state = {
-            txt: ''
+            txt: '',
+            error: ''
         }
         this.onSubmit = this.onSubmit.bind(this)
     }
 
-    onSubmit(ev){
+    async onSubmit(ev){
         ev.preventDefault()
-        this.props.create(this.state.txt)
-        console.log(this.state)
+        try {
+            await this.props.create(this.state.txt)
+            this.setState({txt: '', error: ''})
+        }
+        catch(ex){
+            this.setState({ error: ex.response.data})
+        }
     }
     render() {
-        const { txt } = this.state;
+        const { txt, error } = this.state;
         const { onSubmit } = this;
         return(
             <form onSubmit={ onSubmit }>
+                
                 <input value={txt} onChange={ ev=> this.setState({txt: ev.target.value})}/>
                 <br></br>
+                {error}
                 <br></br>
                 <button>Add Workout</button>
+                
             </form>
         )
     }
@@ -32,7 +41,9 @@ class CreateWorkout extends Component {
 
 const mapDispatch = (dispatch)=> {
     return {
-        create: (txt)=> dispatch(createWorkout(txt))
+        create: (txt)=> {
+            return dispatch(createWorkout(txt))
+        }
     }
 }
 
