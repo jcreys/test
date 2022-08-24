@@ -11,6 +11,7 @@ export const Home = props => {
 
   return (
     <div>
+      <CreateWorkout/>
       <h3>Welcome, {username}</h3>
       <h4>You have {workouts.length} workouts stored</h4>
       <ul>

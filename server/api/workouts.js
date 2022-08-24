@@ -12,3 +12,11 @@ router.get('/', async (req, res, next) => {
     next(err)
   }
 })
+router.post('/', async (req, res, next) => {
+  try {
+    const user = await User.findByToken(req.headers.authorization);
+    res.status(201).send(await Workout.create({...req.body, userId: user.id}))
+  } catch (err) {
+    next(err)
+  }
+})
