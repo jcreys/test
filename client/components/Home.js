@@ -1,53 +1,50 @@
-import React, {useEffect} from 'react'
-import {connect} from 'react-redux'
-import CreateWorkout from './CreateWorkout';
-import { deleteWorkout } from '../store'
+import React, { useEffect } from "react";
+import { connect } from "react-redux";
+import { Link } from "react-router-dom";
+import CreateWorkout from "./CreateWorkout";
+import { deleteWorkout } from "../store";
 /**
  * COMPONENT
  */
-export const Home = props => {
-  const {username,workouts,deleteWorkout} = props
-
+export const Home = (props) => {
+  const { username, workouts, deleteWorkout } = props;
 
   return (
     <div>
-      <CreateWorkout/>
+      <CreateWorkout />
       <h3>Welcome, {username}</h3>
       <h4>You have {workouts.length} workouts stored</h4>
       <ul>
-        {
-          workouts.map(workout => {
-            return (
-              <div>
-                <li key={workout.id}>
-                  {workout.txt}
-                </li> 
-                <button onClick={()=>deleteWorkout(workout)}>x</button>
-              </div>
-              
-            )
-          })
-        }
+        {workouts.map((workout) => {
+          return (
+            <li key={workout.id}>
+              <Link to={`/workout/${workout.id}`}>
+                {workout.id} - {workout.txt}
+              </Link>
+              <button onClick={() => deleteWorkout(workout)}>x</button>
+            </li>
+          );
+        })}
       </ul>
     </div>
-  )
-}
+  );
+};
 
 /**
  * CONTAINER
  */
-const mapState = state => {
+const mapState = (state) => {
   console.log(state);
   return {
     username: state.auth.username,
-    workouts: state.workoutsSlice
-  }
-}
+    workouts: state.workoutsSlice,
+  };
+};
 
-const mapDispatch = (dispatch)=>{
+const mapDispatch = (dispatch) => {
   return {
-    deleteWorkout: (workout)=> dispatch(deleteWorkout(workout))
-  }
-}
+    deleteWorkout: (workout) => dispatch(deleteWorkout(workout)),
+  };
+};
 
-export default connect(mapState, mapDispatch)(Home)
+export default connect(mapState, mapDispatch)(Home);
