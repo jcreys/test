@@ -7,7 +7,8 @@ class CreateWorkout extends Component {
         super();
         this.state = {
             title: '',
-            error: ''
+            error: '',
+            html: ''
         }
         this.onSubmit = this.onSubmit.bind(this)
     }
@@ -16,7 +17,7 @@ class CreateWorkout extends Component {
         ev.preventDefault()
         try {
             await this.props.create(this.state.title)
-            this.setState({title: '', error: ''})
+            this.setState({title: '', html:'', error: ''})
         }
         catch(ex){
             this.setState({ error: ex.response.data})

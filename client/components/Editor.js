@@ -24,15 +24,15 @@ export const Editor = (props) => {
           const id = pathname.split('/workout/')[1]
           const title = workouts.filter(item => item.id === id*1)
           console.log('JJJJJJJ->', name)
-            handleExport({html: html, id: id, title:title})
+            handleExport({html: html, id: id, title: title[0].title})
         });
       };
 
     const handleExport = async(html)=>{
         try{
-            console.log('XXXXXX->',html.id)
+            console.log('XXXXXX->',html.title)
 
-            const resp = await axios.post(`/api/workouts/${html.id}`, html,{
+            const resp = await axios.put(`/api/workouts/${html.id}`, html,{
                 headers: {
                   authorization: window.localStorage.getItem('token')
                 }

@@ -20,15 +20,14 @@ router.post('/', async (req, res, next) => {
     next(err)
   }
 })
-router.post('/:id', async (req, res, next) => {
+router.put('/:id', async (req, res, next) => {
   try {
-    console.log('JJJJJJJ', req.body.html)
+    console.log('JJJJJJJ', req.body)
     const user = await User.findByToken(req.headers.authorization);
-    res.status(201).send(await Workout.create({
-        title: req.body.title[0].title, 
-        html: req.body.html,
-        userId: user.id
-    }))
+    const workout = await Workout.findByPk(req.params.id);
+    // res.status(201).send(await Workout.update({}, { where: {id: id}}));
+    // const workout = await Workout.findByPk(req.params.id);
+    res.send(await workout.update(req.body))
   } catch (err) {
     next(err)
   }
