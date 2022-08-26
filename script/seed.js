@@ -25,11 +25,11 @@ async function seed() {
 
   const workouts = await Promise.all([
     Workout.create({
-      txt: 'foo', 
+      title: 'foo', 
       userId: cody.id
     }),
     Workout.create({
-      txt: 'bar', 
+      title: 'bar', 
       userId: murphy.id}),
   ])
   // console.log(`seeded ${users.length} users`)

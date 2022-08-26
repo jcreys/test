@@ -8,6 +8,9 @@ import { deleteWorkout } from "../store";
  */
 export const Home = (props) => {
   const { username, workouts, deleteWorkout } = props;
+  // useEffect(()=>{
+  //   console.log('>>>>>',props)
+  // })
 
   return (
     <div>
@@ -19,7 +22,7 @@ export const Home = (props) => {
           return (
             <li key={workout.id}>
               <Link to={`/workout/${workout.id}`}>
-                {workout.id} - {workout.txt}
+                {workout.id} - {workout.title}
               </Link>
               <button onClick={() => deleteWorkout(workout)}>x</button>
             </li>

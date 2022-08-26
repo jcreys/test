@@ -20,6 +20,19 @@ router.post('/', async (req, res, next) => {
     next(err)
   }
 })
+router.post('/:id', async (req, res, next) => {
+  try {
+    console.log('JJJJJJJ', req.body.html)
+    const user = await User.findByToken(req.headers.authorization);
+    res.status(201).send(await Workout.create({
+        title: req.body.title[0].title, 
+        html: req.body.html,
+        userId: user.id
+    }))
+  } catch (err) {
+    next(err)
+  }
+})
 router.delete('/:id', async (req, res, next) => {
   try {
     const user = await User.findByToken(req.headers.authorization);

@@ -18,9 +18,19 @@ const workouts = (state = [], action)=>{
   }
   return state
 }
-export const createWorkout = (txt)=> {
+export const createWorkout = (title)=> {
   return async(dispatch)=>{
-    const response = await axios.post('/api/workouts', {txt}, {
+    const response = await axios.post('/api/workouts', {title}, {
+      headers: {
+        authorization: window.localStorage.getItem('token')
+      }
+    })
+    dispatch({ type: CREATE_WORKOUT, workout: response.data})
+  }
+}
+export const exportToHtml = (html)=> {
+  return async(dispatch)=>{
+    const response = await axios.post(`/api/workouts/`, {html}, {
       headers: {
         authorization: window.localStorage.getItem('token')
       }

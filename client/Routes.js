@@ -29,6 +29,7 @@ class Routes extends Component {
           <Switch>
             <Route path="/home" component={Home} />
             <Route path='/workout/:id' component= {Workout} />
+            <Redirect to='/home' />
           </Switch>
         ) : (
           <Switch>

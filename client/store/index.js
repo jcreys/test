@@ -5,6 +5,7 @@ import {composeWithDevTools} from 'redux-devtools-extension'
 import auth from './auth'
 import workoutsSlice from './workoutsSlice'
 
+
 const reducer = combineReducers({ auth, workoutsSlice })
 const middleware = composeWithDevTools(
   applyMiddleware(thunkMiddleware, createLogger({collapsed: true}))
