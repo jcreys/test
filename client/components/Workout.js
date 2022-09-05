@@ -16,7 +16,7 @@ export const Workout = (props) => {
   return (
     <div>
         {console.log('??????',workouts)}
-      <Editor workouts={props}/>
+      <Editor workouts={props} />
       <ul>
         {workouts
           .filter((workout) => workout.id === match.params.id * 1)

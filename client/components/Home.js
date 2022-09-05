@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, Route } from "react-router-dom";
 import CreateWorkout from "./CreateWorkout";
 import { deleteWorkout } from "../store";
 /**
@@ -14,7 +14,7 @@ export const Home = (props) => {
 
   return (
     <div>
-      <CreateWorkout />
+      <Route component= { CreateWorkout } />
       <h3>Welcome, {username}</h3>
       <h4>You have {workouts.length} workouts stored</h4>
       <ul>

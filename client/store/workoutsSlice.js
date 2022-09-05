@@ -18,7 +18,7 @@ const workouts = (state = [], action)=>{
   }
   return state
 }
-export const createWorkout = (title)=> {
+export const createWorkout = (title, history)=> {
   return async(dispatch)=>{
     const response = await axios.post('/api/workouts', {title}, {
       headers: {
@@ -26,6 +26,7 @@ export const createWorkout = (title)=> {
       }
     })
     dispatch({ type: CREATE_WORKOUT, workout: response.data})
+    history.push(`/workout/${response.data.id}`)
   }
 }
 export const exportToHtml = (html)=> {

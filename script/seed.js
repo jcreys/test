@@ -29,11 +29,13 @@ async function seed() {
       title: "foo",
       html: "",
       userId: cody.id,
+      saveData: {}
     }),
     Workout.create({
       title: "bar",
       html: "",
       userId: murphy.id,
+      saveData: {}
     }),
   ]);
   // console.log(`seeded ${users.length} users`)

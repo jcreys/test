@@ -13,7 +13,10 @@ const Workout = db.define("workout", {
   },
   html: {
     type: Sequelize.TEXT
-}
+},
+  saveData: {
+    type: Sequelize.JSON
+},
 });
 
 module.exports = Workout;

@@ -20,6 +20,14 @@ router.post('/', async (req, res, next) => {
     next(err)
   }
 })
+router.get('/:id', async (req, res, next) => {
+  try {
+    const user = await User.findByToken(req.headers.authorization);
+    res.send(await Workout.findByPk(user.id*1))
+  } catch (err) {
+    next(err)
+  }
+})
 router.put('/:id', async (req, res, next) => {
   try {
     console.log('JJJJJJJ', req.body)

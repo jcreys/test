@@ -8,7 +8,8 @@ class CreateWorkout extends Component {
         this.state = {
             title: '',
             error: '',
-            html: ''
+            html: '',
+            saveData: {},
         }
         this.onSubmit = this.onSubmit.bind(this)
     }
@@ -17,7 +18,7 @@ class CreateWorkout extends Component {
         ev.preventDefault()
         try {
             await this.props.create(this.state.title)
-            this.setState({title: '', html:'', error: ''})
+            this.setState({title: '', html:'', error: '', saveData: {}})
         }
         catch(ex){
             this.setState({ error: ex.response.data})
@@ -40,10 +41,11 @@ class CreateWorkout extends Component {
     }
 }
 
-const mapDispatch = (dispatch)=> {
+const mapDispatch = (dispatch, { history })=> {
     return {
         create: (title)=> {
-            return dispatch(createWorkout(title))
+            console.log('-J-J->',history)
+            return dispatch(createWorkout(title, history))
         }
         
     }
