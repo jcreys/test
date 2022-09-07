@@ -23,7 +23,7 @@ router.post('/', async (req, res, next) => {
 router.get('/:id', async (req, res, next) => {
   try {
     const user = await User.findByToken(req.headers.authorization);
-    res.send(await Workout.findByPk(user.id*1))
+    res.send(await Workout.findByPk(req.params.id))
   } catch (err) {
     next(err)
   }

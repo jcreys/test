@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useState } from "react";
+import React, { useRef, useEffect, useState, useCallback } from "react";
 // import { useParams } from react-router-dom
 import { connect } from "react-redux";
 // import { exportToHtml } from "../store"
@@ -59,17 +59,22 @@ export const Editor = (props) => {
     console.log("onDesignLoad", saveData);
   };
 
-  const onReady = (design) => {
+  const onReady = useCallback((design) => {
+    if (!design.data) return; // TODO: is there a better way?
+
     // editor instance is created
     // you can load your template here;
     emailEditorRef.current.editor.addEventListener(
       "design:loaded",
       onDesignLoad
     );
-    Object.keys(design.data.saveData).length ? emailEditorRef.current.editor.loadDesign(design.data.saveData):emailEditorRef.current.editor.loadDesign(sample);
+
+    console.log('design', design.data)
+
+    Object.keys(design.data?.saveData || {}).length ? emailEditorRef.current.editor.loadDesign(design.data.saveData):emailEditorRef.current.editor.loadDesign(sample);
     console.log('RRR->',design)
 
-  };
+  }, []);
   console.log('JJJJJ->',saveData)
 
   
