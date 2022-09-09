@@ -2,6 +2,7 @@ const path = require('path')
 const express = require('express')
 const morgan = require('morgan')
 const app = express()
+const {apiInstance} = require('./services/sendinblue')
 module.exports = app
 
 // logging middleware
@@ -41,3 +42,14 @@ app.use((err, req, res, next) => {
   console.error(err.stack)
   res.status(err.status || 500).send(err.message || 'Internal server error.')
 })
+
+let opts = {
+  'limit': 50, 
+  'offset': 0, 
+  'modifiedSince': new Date('2021-09-07T19:20:30+01:00') 
+};
+apiInstance.getContacts(opts).then(function(data) {
+  console.log('API called successfully. Returned data: ' +JSON.stringify(data));
+}, function(error) {
+  console.error(error);
+});
