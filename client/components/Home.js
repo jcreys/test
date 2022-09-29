@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { Link, Route } from "react-router-dom";
 import CreateWorkout from "./CreateWorkout";
 import { deleteWorkout } from "../store";
+
 /**
  * COMPONENT
  */
@@ -17,6 +18,7 @@ export const Home = (props) => {
       <Route component= { CreateWorkout } />
       <h3>Welcome, {username}</h3>
       <h4>You have {workouts.length} workouts stored</h4>
+     
       <ul>
         {workouts.map((workout) => {
           return (
