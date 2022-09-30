@@ -90,6 +90,9 @@ navbar */
   cursor: pointer;
 }
 
+a{
+  color: darkblue
+}
 .topRight{
     display: flex;
     align-items: center;
@@ -272,3 +275,31 @@ featuredInfo */
     color: red;
     cursor: pointer;
 }
+/* 
+dropdown */
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  right: 0;
+  background-color: #f1f1f1;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content .login {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content .login:hover {background-color: #ddd;}
+
+.dropdown:hover .dropdown-content {display: block;}
