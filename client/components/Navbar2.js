@@ -8,7 +8,7 @@ export default function Navbar2() {
     <div className="topbar">
       <div className="topbarWrapper">
         <div className="topLeft">
-          <span className="logo">lamaadmin</span>
+          <span className="logo">Body Improvement Club</span>
         </div>
         <div className="topRight">
           <div className="topbarIconContainer">

@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { createWorkout } from '../store'
+import AddCircleIcon from '@mui/icons-material/AddCircle';
 
 class CreateWorkout extends Component {
     constructor() {
@@ -28,13 +29,14 @@ class CreateWorkout extends Component {
         const { title, error } = this.state;
         const { onSubmit } = this;
         return(
+
             <form onSubmit={ onSubmit }>
-                
+                Create Email:<br></br>
                 <input value={title} onChange={ ev=> this.setState({title: ev.target.value})}/>
                 <br></br>
                 {error}
                 <br></br>
-                <button>Add Workout</button>
+                <button className="emailListEdit">Create Entry</button>
                 
             </form>
         )

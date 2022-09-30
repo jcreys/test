@@ -82,7 +82,7 @@ export const Editor = (props) => {
   return (
     <div>
       <div>
-        <button onClick={exportHtml}>Export HTML</button>
+        <button className="emailListEdit" onClick={exportHtml}>Save</button>
       </div>
 
       <EmailEditor ref={emailEditorRef} onReady={onReady} />
