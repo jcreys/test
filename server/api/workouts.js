@@ -30,7 +30,6 @@ router.get('/:id', async (req, res, next) => {
 })
 router.put('/:id', async (req, res, next) => {
   try {
-    console.log('JJJJJJJ', req.body)
     const user = await User.findByToken(req.headers.authorization);
     const workout = await Workout.findByPk(req.params.id);
     // res.status(201).send(await Workout.update({}, { where: {id: id}}));
