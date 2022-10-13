@@ -55,6 +55,7 @@ async function composeMail() {
           },
         }),
       ]);
+      
       //    const email = await Promise.all ([Mail.findOrCreate({
       //         where: {
       //             subscriberId: sub.id
