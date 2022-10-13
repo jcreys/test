@@ -7,6 +7,12 @@ const Mail = db.define("mail", {
   encodedMail: {
     type: Sequelize.JSON
 },
+  subject: {
+    type: Sequelize.STRING
+  },
+  sendTo: {
+    type: Sequelize.STRING
+  }
 });
 
 module.exports = Mail;

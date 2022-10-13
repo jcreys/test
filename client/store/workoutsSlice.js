@@ -18,9 +18,10 @@ const workouts = (state = [], action)=>{
   }
   return state
 }
-export const createWorkout = (title, saveData, history)=> {
+export const createWorkout = (title, saveData, html, history)=> {
   return async(dispatch)=>{
-    const response = await axios.post('/api/workouts', {title,saveData}, {
+    
+    const response = await axios.post('/api/workouts', {title,saveData,html}, {
       headers: {
         authorization: window.localStorage.getItem('token')
       }

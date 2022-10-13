@@ -2,7 +2,8 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { createWorkout } from "../store";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
-import sample from "./sample.json"
+import sample from "./sample.json";
+import {htmlSample} from './html'
 
 class CreateWorkout extends Component {
   constructor() {
@@ -19,7 +20,7 @@ class CreateWorkout extends Component {
   async onSubmit(ev) {
     ev.preventDefault();
     try {
-      await this.props.create(this.state.title, sample);
+      await this.props.create(this.state.title, sample, htmlSample);
       this.setState({ title: "", html: "", error: "", saveData: {} });
     } catch (ex) {
       this.setState({ error: ex.response.data });
@@ -46,8 +47,8 @@ class CreateWorkout extends Component {
 
 const mapDispatch = (dispatch, { history }) => {
   return {
-    create: (title, sample) => {
-      return dispatch(createWorkout(title, sample, history));
+    create: (title, sample, htmlSample) => {
+      return dispatch(createWorkout(title, sample, htmlSample, history));
     },
   };
 };
